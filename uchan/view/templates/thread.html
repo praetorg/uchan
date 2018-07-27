@@ -15,6 +15,7 @@
     <hr class="content-divider">
     <div class="thread-controls">
         [<a href="{{ url_for('board', board_name=thread.board.name) }}">Back</a>]
+	[<a href="{{ url_for('board', board_name=thread.board.name) }}catalog">Catalog</a>]
         <span id="top">[<a href="#bottom">Bottom</a>]</span>
         <span class="thread-controls-extra"></span>
         <span class="thread-controls-center"></span>
@@ -37,6 +38,7 @@
     <div class="post-manage-container">
         <div class="thread-controls">
             [<a href="{{ url_for('board', board_name=thread.board.name) }}">Back</a>]
+	    [<a href="{{ url_for('board', board_name=thread.board.name) }}catalog">Catalog</a>]
             <span id="bottom">[<a href="#top">Top</a>]</span>
             <span class="thread-controls-extra"></span>
             <span class="thread-controls-center"></span>
