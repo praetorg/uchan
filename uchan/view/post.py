@@ -327,7 +327,7 @@ def find_post(post_id):
 
 
 def url_for_post(board_name, thread_refno, post_id):
-    return url_for('view_thread', board_name=board_name, thread_refno=thread_refno) + '#p' + str(post_id)
+    return f'{url_for("view_thread", board_name=board_name, thread_refno=thread_refno)}#p{post_id}'
 
 
 app.jinja_env.globals['url_for_post'] = url_for_post
