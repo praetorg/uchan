@@ -34,16 +34,16 @@ def setup_assets(app):
         assets.auto_build = True
 
         for script in scripts:
-            bundle = Bundle(script[2] + '.js', output=script[1] + '.js')
+            bundle = Bundle(f'{script[2]}.js', output=f'{script[1]}.js')
             registered_bundles.append((script[0], bundle))
 
         for style in styles:
-            bundle = Bundle(style[2] + '.css', output=style[1] + '.css')
+            bundle = Bundle(f'{style[2]}.css', output=f'{style[1]}.css')
             registered_bundles.append((style[0], bundle))
 
         for theme in themes:
-            bundle = Bundle('style/themes/' + theme[1] + '.css',
-                            output=theme[1] + '.css')
+            bundle = Bundle(f'style/themes/{theme[1]}.css',
+                            output=f'{theme[1]}.css')
             theme_bundles.append(bundle)
 
     else:
@@ -52,16 +52,16 @@ def setup_assets(app):
         assets.auto_build = False
 
         for script in scripts:
-            bundle = Bundle(script[2] + '.js', filters='jsmin', output=script[1] + '.%(version)s.js')
+            bundle = Bundle(f'{script[2]}.js', filters='jsmin', output=f'{script[1]}.%(version)s.js')
             registered_bundles.append((script[0], bundle))
 
         for style in styles:
-            bundle = Bundle(style[2] + '.css', filters='cleancss', output=style[1] + '.%(version)s.css')
+            bundle = Bundle(f'{style[2]}.css', filters='cleancss', output=f'{style[1]}.%(version)s.css')
             registered_bundles.append((style[0], bundle))
 
         for theme in themes:
-            bundle = Bundle('style/themes/' + theme[1] + '.css',
-                            filters='cleancss', output=theme[1] + '.%(version)s.css')
+            bundle = Bundle(f'style/themes/{theme[1]}.css',
+                            filters='cleancss', output=f'{theme[1]}.%(version)s.css')
             theme_bundles.append(bundle)
 
     for registered_bundle in registered_bundles:
@@ -69,7 +69,7 @@ def setup_assets(app):
 
     theme_names = []
     for i, theme_bundle in enumerate(theme_bundles):
-        assets.register('css_theme_' + themes[i][1], theme_bundle)
+        assets.register(f'css_theme_{themes[i][1]}', theme_bundle)
         theme_names.append(themes[i])
 
     app.jinja_env.globals['theme_names'] = theme_names
