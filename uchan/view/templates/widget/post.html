@@ -34,12 +34,12 @@
             </span>
             {% if is_locked %}<b>[locked]</b> {% endif %}
             {% if is_sticky %}<b>[sticky]</b>{% endif %}
-            {% if checkbox %}
+            <b>No.{{ post_item.id }}</b>
+	    {% if checkbox %}
             <span class="manage">
                 <input type="checkbox" name="post_id" value="{{ post_item.id }}">
             </span>
             {% endif %}
-
             {% if post_item.files %}
                 <br>
                 {% for file in post_item.files %}

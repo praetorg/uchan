@@ -2,7 +2,7 @@
     <div class="catalog-post" id="p{{ post_item.refno }}">
         <div class="text-container">
             <span class="date">
-                {{ post_item.date|post_time }}
+                {{ post_item.date|post_time }} <b>No.{{ post_item.id }}</b>
             </span>
             {% if post_item.files %}
                 {% for file in post_item.files[:1] %}
