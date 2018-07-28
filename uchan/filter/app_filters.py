@@ -49,24 +49,24 @@ def time_remaining(t):
     seconds = int(remaining // ms_in_second)
     remaining -= seconds * ms_in_second
 
-    text = ''
+    text_seconds, text_days, text_connect, text_hours, text_minutes, text_append = '', '', '', '', '', ''
     if not days and not hours and not minutes:
-        text += '{} second{}'.format(seconds, '' if seconds == 1 else 's')
+        text_seconds = f"{seconds} second{'' if seconds == 1 else 's'}"
     else:
         if days > 0:
-            text += '{} day{}'.format(days, '' if days == 1 else 's')
+            text_days = f"{days} day{'' if days == 1 else 's'}"
             if hours > 0:
-                text += ', '
+                text_connect = ', '
             else:
-                text += ' and '
+                text_connect = ' and '
         if hours > 0:
-            text += '{} hour{} and '.format(hours, '' if hours == 1 else 's')
-        text += '{} minute{}'.format(minutes, '' if minutes == 1 else 's')
+            text_hours = f"{hours} hour{'' if hours == 1 else 's'} and "
+        text_minutes = f"{minutes} minute{'' if minutes == 1 else 's'}"
 
     if past:
-        text += ' ago'
+        text_append = ' ago'
 
-    return text
+    return f'{text_days}{text_connect}{text_hours}{text_minutes}{text_seconds}{text_append}'
 
 
 @app.template_filter()
