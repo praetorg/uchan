@@ -62,7 +62,7 @@ class LocalCdn(FileCdn):
             pass
 
     def resolve_to_uri(self, file_name):
-        return self.web_path + file_name[:2] + '/' + file_name[2:]
+        return f'{self.web_path}{file_name[:2]}/{file_name[2:]}'
 
     def _folderize(self, file_name, make_subdir=False):
         # Make the first two chars of the random name a folder, this is efficient for most file systems
@@ -130,8 +130,8 @@ def prepare_upload(file, thumbnail_size):
 
     filename, extension = _get_filename(extension)
 
-    image_name = filename + '.' + extension
-    thumbnail_name = filename + THUMBNAIL_POSTFIX + '.jpg'
+    image_name = f'{filename}.{extension}'
+    thumbnail_name = f'{filename}{THUMBNAIL_POSTFIX}.jpg'
 
     image_output = os.path.join(upload_queue_path, image_name)
     thumbnail_output = os.path.join(upload_queue_path, thumbnail_name)

@@ -22,7 +22,7 @@ class Configuration:
         value = func(name)
         if value is None:
             if default is None:
-                raise Exception(name + ' not present in [' + self.section + ']')
+                raise Exception(f'{name} not present in [ {self.section} ]')
             else:
                 value = default
         return value

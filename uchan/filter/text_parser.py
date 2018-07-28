@@ -80,19 +80,19 @@ def parse_text_line(line, linkify, bigheaders):
     if bigheaders:
         if line.startswith('####'):
             with_break = False
-            line = '<h1> ' + line[4:].lstrip() + '</h1>'
+            line = f'<h1> {line[4:].lstrip()}</h1>'
 
         if line.startswith('###'):
             with_break = False
-            line = '<h2> ' + line[3:].lstrip() + '</h2>'
+            line = f'<h2> {line[3:].lstrip()}</h2>'
 
     if line.startswith('##'):
         with_break = False
-        line = '<h3 class="red"> ' + line[2:].lstrip() + '</h3>'
+        line = f'<h3 class="red"> {line[2:].lstrip()}</h3>'
 
     if line.startswith('#'):
         with_break = False
-        line = '<h3> ' + line[1:].lstrip() + '</h3>'
+        line = f'<h3> {line[1:].lstrip()}</h3>'
 
     # Replace any >>123 with <a class="rquote" href="#p123">&gt;&gt;123</a>
     line = POST_REFNO_PATTERN.sub('<a class="rquote" href="#p\\1">&gt;&gt;\\1</a>', line)
@@ -104,7 +104,7 @@ def parse_text_line(line, linkify, bigheaders):
 
     # If the line started with a > wrap the line around a quote span
     if line.startswith('&gt;'):
-        line = '<span class="quote">' + line + '</span>'
+        line = f'<span class="quote">{line}</span>'
 
     if with_break:
         line += '<br>'
@@ -118,4 +118,4 @@ def parse_moderator_code(moderator):
     else:
         role_name = 'Board moderator'
 
-    return '## ' + role_name
+    return f'## {role_name}'

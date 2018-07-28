@@ -210,7 +210,7 @@ def _process_name(name):
                 new_regcode = regcode.create(new_regcode, password)
                 cap = new_regcode.code
 
-            result_name = name + ' !!' + cap
+            result_name = f'{name} !!{cap}'
     elif '#' in name:
         name, password = _name_password_from_name(name, '#')
         name = _filter_name(name)
@@ -218,7 +218,7 @@ def _process_name(name):
         if password:
             # Styling is applied later
             cap = generate_crypt_code(password)
-            result_name = name + ' !' + cap
+            result_name = f'{name} !{cap}'
     elif name.lower() == 'sage' or name == '下げ':
         sage = True
     else:
@@ -242,6 +242,6 @@ def _generate_capcode():
     sys_random = random.SystemRandom()
 
     length = 10
-    alphabet = string.ascii_letters + string.digits + '+.'
+    alphabet = f'{string.ascii_letters}{string.digits}+.'
 
     return ''.join(sys_random.choice(alphabet) for _ in range(length))

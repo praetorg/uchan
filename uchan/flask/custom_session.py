@@ -98,7 +98,7 @@ class CustomSessionInterface(SessionInterface):
         return str(uuid4()).replace('-', '')
 
     def find_session_for_id(self, session_id):
-        cache_data = self.cache.get(self.prefix + session_id, True)
+        cache_data = self.cache.get(f'{self.prefix}{session_id}', True)
         if cache_data is not None:
             return CustomSession(initial=cache_data.data, session_id=session_id, expires=cache_data.expires)
         else:
@@ -132,7 +132,7 @@ class CustomSessionInterface(SessionInterface):
             s.commit()
 
     def store_session_cache(self, session):
-        self.cache.set(self.prefix + session.session_id, CustomSessionCacheDict(session, session.expires))
+        self.cache.set(f'{self.prefix}{session.session_id}', CustomSessionCacheDict(session, session.expires))
 
     def delete_session(self, session_id):
         with sessioncontext() as s:
@@ -143,4 +143,4 @@ class CustomSessionInterface(SessionInterface):
             except NoResultFound:
                 pass
 
-        self.cache.delete(self.prefix + session_id)
+        self.cache.delete(f'{self.prefix}{session_id}')

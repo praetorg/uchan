@@ -31,7 +31,7 @@ class PagedModel:
         return self.provide_data(offset, limit)
 
     def offset(self, name):
-        offset_key = name + '_offset'
+        offset_key = f'{name}_offset'
 
         return max(0, request.args.get(offset_key, type=int, default=0))
 
@@ -76,5 +76,5 @@ class PagedModel:
     def offset_link(self, name, base_url, offset):
         d = {}
         if offset > 0:
-            d[name + '_offset'] = str(offset)
+            d[f'{name}_offset'] = str(offset)
         return url_for(base_url, **d)

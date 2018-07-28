@@ -89,7 +89,7 @@ def post_name(name):
 
     if '!' in value:
         one, two = value.split('!', maxsplit=1)
-        value = one + '<span class="trip">!' + two + '</span>'
+        value = f'{one}<span class="trip">!{two}</span>'
 
     return Markup(value)
 
@@ -103,7 +103,7 @@ def post_file_uri(name):
 
 @app.template_filter()
 def board_code_name(board):
-    code = '/' + board.name + '/'
+    code = f'/{board.name}/'
     full_name = board.config.full_name
-    name = ' - ' + full_name if full_name else ''
-    return code + name
+    name = f' - {full_name}' if full_name else ''
+    return f'{code}{name}'
