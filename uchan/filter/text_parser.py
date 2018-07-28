@@ -104,10 +104,7 @@ def parse_text_line(line, linkify, bigheaders):
 
     # If the line started with a > wrap the line around a quote span
     if line.startswith('&gt;'):
-        line = f'<span class="quote">{line}</span>'
-
-    if with_break:
-        line += '<br>'
+        line = f'''<span class="quote">{line}</span>{'<br>' if with_break else ''}'''
 
     return line
 
